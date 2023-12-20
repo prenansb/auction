@@ -1,5 +1,6 @@
 .env
 todo.md
+/prisma/migrations
 
 # compiled output
 /dist

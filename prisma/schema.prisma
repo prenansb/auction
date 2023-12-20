@@ -1,0 +1,41 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Define the data model for the Auction entity
+model Auction {
+  id        Int      @id @default(autoincrement())
+  name      String
+  startDate DateTime
+  endDate   DateTime
+  endPrice  Float?
+  item      Item[]
+}
+
+// Define the data model for the Item entity
+model Item {
+  id          Int     @id @default(autoincrement())
+  name        String
+  description String
+  startPrice  Float
+  auction     Auction @relation(fields: [auctionId], references: [id])
+  auctionId   Int
+  bids        Bid[]   @relation("ItemBids")
+}
+
+// Define the data model for the Bid entity
+model Bid {
+  id        Int      @id @default(autoincrement())
+  amount    Float
+  timestamp DateTime
+  itemId    Int
+  item      Item     @relation("ItemBids", fields: [itemId], references: [id])
+}
