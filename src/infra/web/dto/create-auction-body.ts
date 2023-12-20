@@ -10,7 +10,7 @@ export class Item {
 
   @IsNotEmpty()
   @IsNumber()
-  startPrice: string;
+  startPrice: number;
 }
 
 export class CreateAuctionBody {
