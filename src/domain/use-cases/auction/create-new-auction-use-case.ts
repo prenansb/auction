@@ -16,7 +16,7 @@ interface CreateAuctionUseCaseResponse {
   name: string;
 }
 
-@Injectable
+@Injectable()
 export class CreateNewAuctionUseCase {
   constructor(private auctionsRepository: AuctionsRepository) {}
 
